@@ -20,7 +20,7 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
     # user input for city (chicago, new york city, washington).
     citylist = list(CITY_DATA.keys())
-    print("would you like to see data for",citylist)
+    print("would you like to see data for wich city",citylist)
     while True:
         city = input().lower()
         if city not in CITY_DATA:
