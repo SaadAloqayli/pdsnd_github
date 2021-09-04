@@ -65,24 +65,24 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     df = pd.read_csv(CITY_DATA[city])
-    # convert the Start Time column to datetime
+    # convert the Start Time column to datetime.
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
-    # extract month and day of week from Start Time to create new columns
+    # extract month and day of week from Start Time to create new columns.
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
 
     # filter by month if applicable
     if month != 'all':
-        # use the index of the months list to get the corresponding int
+        # use the index of the months list to get the corresponding int.
         month = months.index(month) + 1
 
-        # filter by month to create the new dataframe
+        # filter by month to create the new dataframe.
         df = df[df['month'] == month]
 
     # filter by day of week if applicable
     if day != 'All':
-        # filter by day of week to create the new dataframe
+        # filter by day of week to create the new dataframe.
         df = df[df['day_of_week'] == day.title()]
 
     return df
@@ -94,21 +94,21 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    #  the most common month
+    #  the most common month.
     popular_month = df['month'].mode()[0]
 
-    # the most common day of week
+    # the most common day of week.
     popular_day = df['day_of_week'].mode()[0]
 
-    # the most common start hour
+    # the most common start hour.
 
-    # convert the Start Time column to datetime
+    # convert the Start Time column to datetime.
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
-    # extract hour from the Start Time column to create an hour column
+    # extract hour from the Start Time column to create an hour column.
     df['hour'] = df['Start Time'].dt.hour
 
-    # find the most popular hour
+    # find the most popular hour.
     popular_hour = df['hour'].mode()[0]
 
     print("Most Popular month:",popular_month)
@@ -124,13 +124,13 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    #  display most commonly used start station
+    #  display most commonly used start station.
     popular_start_station = df['Start Station'].mode()[0]
 
     #  display most commonly used end station
     popular_end_station = df['End Station'].mode()[0]
 
-    #  display most frequent combination of start station and end station trip
+    #  display most frequent combination of start station and end station trip.
     popular_combination = df.groupby(['Start Station','End Station']).size().idxmax()
     print("Most Popular Start Station:",popular_start_station)
     print("Most Popular End Station:",popular_end_station)
@@ -146,10 +146,10 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    #  display total travel time
+    #  display total travel time.
     total_travel_time = df['Trip Duration'].sum()
 
-    # display mean travel time
+    # display mean travel time.
     mean_travel_time = df['Trip Duration'].mean()
 
     print("total travel time:",total_travel_time)
@@ -162,15 +162,15 @@ def user_stats(df):
     """Displays statistics on bikeshare users."""
     print('\nCalculating User Stats...\n')
     start_time = time.time()
-    # Display counts of user types
+    # Display counts of user types.
     user_types = df['User Type'].value_counts()
-    # Display counts of gender
+    # Display counts of gender.
     if 'Gender' in df:
         gender_types = df['Gender'].value_counts()
         print('count of males and females is :' , gender_types)
     else:
         print('there is no gender data for this city')
-    # Display earliest, most recent, and most common year of birth
+    # Display earliest, most recent, and most common year of birth.
     if 'Birth Year' in df:
         earliest = int(df['Birth Year'].min())
         recent = int(df['Birth Year'].max())
@@ -187,7 +187,7 @@ def data(df):
     raw_input = 0
 
     while True:
-        # to ask the user if he wants to see the raw data or not
+        # to ask the user if he wants to see the raw data or not.
         choice = input('do you want to see five rows of raw data ? please type yes if you want to and no If you don\'t: ').lower()
         if choice == 'no':
             break
