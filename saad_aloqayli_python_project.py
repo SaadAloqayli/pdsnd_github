@@ -188,7 +188,7 @@ def data(df):
 
     while True:
         # to ask the user if he wants to see the raw data or not
-        choice = input('do you want to see five rows of raw data ? please type yes if you want to and no If you don\'t: ').lower()
+        choice = input('do you want to see five rows of raw data ? please type (yes) if you want to and (no) If you don\'t: ').lower()
         if choice == 'no':
             break
         elif choice == 'yes':
