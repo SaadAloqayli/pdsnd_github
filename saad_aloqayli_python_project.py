@@ -25,7 +25,6 @@ def get_filters():
         city = input().lower()
         if city not in CITY_DATA:
             print("please try again")
-            continue
         else:
             break
 
@@ -35,7 +34,6 @@ def get_filters():
         month = input().lower()
         if month not in months:
             print("please try again")
-            continue
         else:
             break
 
@@ -45,7 +43,6 @@ def get_filters():
         day = input().title()
         if day not in days_of_week:
             print("please try again")
-            continue
         else:
             break
 
